@@ -1,0 +1,42 @@
+  const [lastValue, setLastValue] = useState('');
+//
+//   useEffect(() => {
+//     checkAuth();
+//   } ,[])
+
+  // const checkAuth = async () => {
+  //   try{
+  //     await Auth.currentUserPoolUser();
+  //     history.push('/');
+  //   }catch (exception: any){
+  //     history.push('/login')
+  //   }
+  // }
+  const [value, setValue] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const {value} = e.target;
+    setValue(value);
+
+
+  }
+
+  const hanldeKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>)=>{
+    if(e.which === 13){
+      console.log('enter');
+
+      if(value && value !== "\n" ){
+        console.log(value)
+        setValue(value => value +'\n');
+      }
+    }
+  }
+
+
+  const handleSubmit = ()=> {
+    if(value){
+      const newValue = value.replace(/[\n\r]+/g, "\n");
+      console.log(newValue);
+      setLastValue(newValue)
+    }
+  }
